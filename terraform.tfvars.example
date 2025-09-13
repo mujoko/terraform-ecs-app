@@ -1,0 +1,23 @@
+# AWS Configuration
+aws_region = "us-east-1"
+
+# Project Configuration
+name_prefix = "my-app"
+environment = "dev"
+
+# Network Configuration
+vpc_cidr            = "10.0.0.0/16"
+public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
+
+# Application Configuration
+app_image           = "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app:latest"
+app_container_port  = 8080
+app_desired_count   = 2
+app_cpu             = 512
+app_memory          = 1024
+
+# MongoDB Configuration
+mongo_image  = "mongo:7.0"
+mongo_port   = 27017
+mongo_cpu    = 512
+mongo_memory = 1024
