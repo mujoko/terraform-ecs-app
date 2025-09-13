@@ -2,7 +2,7 @@
 aws_region = "us-east-1"
 
 # Project Configuration
-name_prefix = "my-app"
+name_prefix = "expresscart"
 environment = "dev"
 
 # Network Configuration
@@ -10,7 +10,7 @@ vpc_cidr            = "10.0.0.0/16"
 public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
 
 # Application Configuration
-app_image           = "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app:latest"
+app_image           = "123456789012.dkr.ecr.us-east-1.amazonaws.com/expresscart:latest"
 app_container_port  = 8080
 app_desired_count   = 2
 app_cpu             = 512

@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "name_prefix" {
   description = "Prefix for naming resources"
   type        = string
-  default     = "my-app"
+  default     = "expresscart"
 }
 
 variable "environment" {

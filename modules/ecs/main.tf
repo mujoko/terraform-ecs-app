@@ -226,10 +226,6 @@ resource "aws_ecs_task_definition" "app" {
 
       environment = [
         {
-          name  = "MONGO_URL"
-          value = "mongodb://${var.name_prefix}-mongo.${var.name_prefix}-cluster.local:${var.mongo_port}"
-        },
-        {
           name  = "PORT"
           value = tostring(var.app_container_port)
         }
@@ -239,13 +235,13 @@ resource "aws_ecs_task_definition" "app" {
         logDriver = "awslogs"
         options = {
           awslogs-group         = aws_cloudwatch_log_group.app.name
-          awslogs-region        = data.aws_region.current.name
+          awslogs-region        = data.aws_region.current.id
           awslogs-stream-prefix = "ecs"
         }
       }
 
       healthCheck = {
-        command     = ["CMD-SHELL", "curl -f http://localhost:${var.app_container_port}/health || exit 1"]
+        command     = ["CMD-SHELL", "curl -f http://localhost:${var.app_container_port}/ || exit 1"]
         interval    = 30
         timeout     = 5
         retries     = 3
@@ -297,7 +293,7 @@ resource "aws_ecs_task_definition" "mongo" {
         logDriver = "awslogs"
         options = {
           awslogs-group         = aws_cloudwatch_log_group.mongo.name
-          awslogs-region        = data.aws_region.current.name
+          awslogs-region        = data.aws_region.current.id
           awslogs-stream-prefix = "ecs"
         }
       }
@@ -333,8 +329,6 @@ resource "aws_service_discovery_service" "mongo" {
 
     routing_policy = "MULTIVALUE"
   }
-
-  health_check_grace_period_seconds = 30
 }
 
 # ECS Services

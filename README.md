@@ -67,11 +67,11 @@ MongoDB ECS Service (Fargate)
    aws_region = "us-east-1"
    
    # Project Configuration  
-   name_prefix = "my-app"
+   name_prefix = "expresscart"
    environment = "dev"
    
    # Application Configuration
-   app_image = "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app:latest"
+   app_image = "123456789012.dkr.ecr.us-east-1.amazonaws.com/expresscart:latest"
    app_container_port = 8080
    ```
 
@@ -91,14 +91,14 @@ MongoDB ECS Service (Fargate)
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `app_image` | ECR image URI for your application | `123456789012.dkr.ecr.us-east-1.amazonaws.com/my-app:latest` |
+| `app_image` | ECR image URI for your application | `123456789012.dkr.ecr.us-east-1.amazonaws.com/expresscart:latest` |
 
 ### Optional Variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `aws_region` | `us-east-1` | AWS region |
-| `name_prefix` | `my-app` | Prefix for resource naming |
+| `name_prefix` | `expresscart` | Prefix for resource naming |
 | `environment` | `dev` | Environment name |
 | `vpc_cidr` | `10.0.0.0/16` | VPC CIDR block |
 | `public_subnet_cidrs` | `["10.0.1.0/24", "10.0.2.0/24"]` | Public subnet CIDRs |
@@ -132,7 +132,7 @@ Your application should be configured to:
 ### Example Environment Variables Available to Your App:
 
 ```bash
-MONGO_URL=mongodb://my-app-mongo.my-app-cluster.local:27017
+MONGO_URL=mongodb://expresscart-mongo.expresscart-cluster.local:27017
 PORT=8080
 ```
 
@@ -197,10 +197,10 @@ The modules are designed to be flexible. You can:
 
 ```bash
 # Check ECS service status
-aws ecs describe-services --cluster my-app-cluster --services my-app-app-service
+aws ecs describe-services --cluster expresscart-cluster --services expresscart-app-service
 
 # View logs
-aws logs tail /ecs/my-app-app --follow
+aws logs tail /ecs/expresscart-app --follow
 
 # Check ALB health
 aws elbv2 describe-target-health --target-group-arn <target-group-arn>
